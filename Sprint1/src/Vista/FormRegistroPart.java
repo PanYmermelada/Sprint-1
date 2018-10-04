@@ -12,7 +12,10 @@ import Modelo.DParticipante;
 import javax.swing.JOptionPane;
 
 import Controlador.Verificador;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
         
@@ -23,12 +26,24 @@ import java.util.logging.Logger;
  * y cancelar
  */
 public class FormRegistroPart extends javax.swing.JInternalFrame {
-
+    Connection conex=null;
+    Conexion c=new Conexion();
     /**
      * Creates new form FormRegistroPart
      */
     public FormRegistroPart() {
         initComponents();
+        conex=c.conectar();
+        this.jComboCongresos.removeAllItems();
+        try{
+            Statement sent=conex.createStatement();
+            ResultSet rs=sent.executeQuery("SELECT * FROM congresos");
+            while(rs.next()){
+                this.jComboCongresos.addItem(rs.getString("NOMBRE_CONGRESO"));
+            }
+        }catch(Exception e){}
+        
+        
     }
 
     /**
@@ -49,10 +64,17 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         txtEdad = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
+        jPanelCongreso = new javax.swing.JPanel();
+        jComboCongresos = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro Participante"));
 
         jLabel1.setText("CI Participante:");
 
@@ -74,20 +96,6 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
             }
         });
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,19 +107,13 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtCi, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(txtCi)
                     .addComponent(txtNombre)
                     .addComponent(txtEdad)
-                    .addComponent(txtTitulo))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,33 +134,112 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(140, 140, 140)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanelCongreso.setBorder(javax.swing.BorderFactory.createTitledBorder("Congreso"));
+
+        jComboCongresos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setText("jLabel5");
+
+        jLabel6.setText("Estado......");
+
+        jLabel7.setText("jLabel7");
+
+        jLabel8.setText("Cupo.......");
+
+        jButton1.setText("Ver HORARIO");
+
+        javax.swing.GroupLayout jPanelCongresoLayout = new javax.swing.GroupLayout(jPanelCongreso);
+        jPanelCongreso.setLayout(jPanelCongresoLayout);
+        jPanelCongresoLayout.setHorizontalGroup(
+            jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCongresoLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jComboCongresos, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongresoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongresoLayout.createSequentialGroup()
+                        .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5))
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongresoLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(103, 103, 103))))
+        );
+        jPanelCongresoLayout.setVerticalGroup(
+            jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCongresoLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jComboCongresos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(41, 41, 41)
+                .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(50, 50, 50)
+                .addComponent(jButton1)
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnGuardar.setText("INSCRIBIR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(25, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelCongreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jPanelCongreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
+
+        jPanelCongreso.getAccessibleContext().setAccessibleName("Congreso");
+        jPanelCongreso.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,7 +286,7 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
 
         
         DParticipante dts = new DParticipante();
-        Conexion conex=new Conexion();
+        Conexion conectar=new Conexion();
         Verificador ver=new Verificador();
         Insertores insertar=new Insertores();
         
@@ -217,11 +298,11 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
         
         try {
             //se Realiza la verificacion de si el participante esta ya registrado
-            if(ver.verificarParticipante(dts.getNombre_participante(), conex)){
+            if(ver.verificarParticipante(dts.getNombre_participante(), conectar)){
                 JOptionPane.showMessageDialog(null, "El Participante ya esta inscrito");
                 
             }else{
-                insertar.Registrar_participante(dts);    
+                insertar.Registrar_participante(dts);
             }
         } catch (SQLException ex) {
             Logger.getLogger(FormRegistroPart.class.getName()).log(Level.SEVERE, null, ex);
@@ -240,11 +321,18 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboCongresos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelCongreso;
     private javax.swing.JTextField txtCi;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;
