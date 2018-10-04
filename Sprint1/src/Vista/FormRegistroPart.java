@@ -161,19 +161,17 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongresoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongresoLayout.createSequentialGroup()
+                .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanelCongresoLayout.createSequentialGroup()
                         .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(52, 52, 52)
                         .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel5))
-                        .addGap(118, 118, 118))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongresoLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(103, 103, 103))))
+                            .addComponent(jLabel5))))
+                .addGap(118, 118, 118))
         );
         jPanelCongresoLayout.setVerticalGroup(
             jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,9 +186,9 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
                 .addGroup(jPanelCongresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
-                .addGap(50, 50, 50)
+                .addGap(58, 58, 58)
                 .addComponent(jButton1)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
