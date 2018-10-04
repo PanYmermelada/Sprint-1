@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.DParticipa;
-import Modelo.DParticipantes;
+import Modelo.DParticipante;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;

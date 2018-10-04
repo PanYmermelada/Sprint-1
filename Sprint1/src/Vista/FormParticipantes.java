@@ -6,7 +6,7 @@
 package Vista;
 
 import Modelo.DParticipa;
-import Modelo.DParticipantes;
+import Modelo.DParticipante;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Controlador.LParticipa;
@@ -30,7 +30,7 @@ public class FormParticipantes extends javax.swing.JInternalFrame {
      public void mostrarBuscar(String usuario){
         DefaultTableModel miModelo;
         LParticipantes fn=new LParticipantes();
-        DParticipantes dts=new DParticipantes();
+        DParticipante dts=new DParticipante();
         dts.setNombre_participante(usuario);
         miModelo=fn.mostrarUsuarios(dts);
         tblParticipantes.setModel(miModelo);
@@ -296,7 +296,7 @@ public class FormParticipantes extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
          if(!txtCi.getText().equals("")){
-            DParticipantes dts = new DParticipantes();
+            DParticipante dts = new DParticipante();
             LParticipantes fn = new LParticipantes();
             DParticipa dts2 = new DParticipa();
             LParticipa fn2 = new LParticipa();
@@ -347,7 +347,7 @@ public class FormParticipantes extends javax.swing.JInternalFrame {
         
         
         String msg = null;
-        DParticipantes dts = new DParticipantes();
+        DParticipante dts = new DParticipante();
         LParticipantes fun = new LParticipantes();
             
         

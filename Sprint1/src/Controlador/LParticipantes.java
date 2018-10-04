@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Modelo.DParticipantes;
+import Modelo.DParticipante;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class LParticipantes {
       Connection cn=cc.conectar();
     
     //metodo para poder buscar y mostrar usuarios
-    public DefaultTableModel mostrarUsuarios(DParticipantes misParticipantes){
+    public DefaultTableModel mostrarUsuarios(DParticipante misParticipantes){
         DefaultTableModel miModelo = null;
         //Lo haremos con procedimientos almacenados
         try{
@@ -62,7 +62,7 @@ public class LParticipantes {
         }
         return msg;  
     }*/
-    public String editarParticipantes(DParticipantes misParticipantes){
+    public String editarParticipantes(DParticipante misParticipantes){
         String msg = null;
         try {
             CallableStatement cst = cn.prepareCall("{ call sp_editar_participantes(?,?,?,?,?) }");
@@ -80,7 +80,7 @@ public class LParticipantes {
         }
         return msg;  
     }
-    public String eliminarParticipantes(DParticipantes misParticipantes){
+    public String eliminarParticipantes(DParticipante misParticipantes){
         String msg = null;
         try {
             CallableStatement cst = cn.prepareCall("{ call sp_eliminar_participantes(?) }");
