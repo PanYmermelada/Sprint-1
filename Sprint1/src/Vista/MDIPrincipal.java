@@ -67,7 +67,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnIncribirParticipante = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnEditarEliminarParticipante = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -98,7 +98,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         lblFecha.setText("jLabel6");
 
-        jButton1.setText("jButton1");
+        btnIncribirParticipante.setText("INSCRIBIR PARTICIPANTE");
+        btnIncribirParticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncribirParticipanteActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
 
@@ -129,16 +134,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 216, Short.MAX_VALUE)
+                    .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnIncribirParticipante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIncribirParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -241,6 +246,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
         misParticipantes.show();
     }//GEN-LAST:event_btnEditarEliminarParticipanteActionPerformed
 
+        //Piter: Evento de boton que muestra el internalFrame de registro de participante
+    private void btnIncribirParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncribirParticipanteActionPerformed
+        FormRegistroPart part=new FormRegistroPart();
+        dpnEscritorio.add(part);
+        part.show();
+    }//GEN-LAST:event_btnIncribirParticipanteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,8 +296,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu ItemReportes;
     private javax.swing.JMenuItem ItemUsuarios;
     private javax.swing.JButton btnEditarEliminarParticipante;
+    private javax.swing.JButton btnIncribirParticipante;
     private javax.swing.JDesktopPane dpnEscritorio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

@@ -1,21 +1,21 @@
 
 package Modelo;
 
-public class DParticipantes {
+public class DParticipante {
     
     int ci_participante;
     String nombre_participante;
     int edad_participante;
     String titulo_participante;
 
-    public DParticipantes(int ci_participante, String nombre_participante, int edad_participante, String titulo_participante) {
+    public DParticipante(int ci_participante, String nombre_participante, int edad_participante, String titulo_participante) {
         this.ci_participante = ci_participante;
         this.nombre_participante = nombre_participante;
         this.edad_participante = edad_participante;
         this.titulo_participante = titulo_participante;
     }
 
-    public DParticipantes() {
+    public DParticipante() {
     }
 
     public int getCi_participante() {
