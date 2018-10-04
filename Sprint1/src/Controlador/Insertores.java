@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Modelo.Congresista;
+import Modelo.Participante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -21,17 +23,17 @@ public class Insertores {
     Conexion con = new Conexion();
   
     
-    public void Registrar_Participante(String nombre, Integer CI,Integer Edad,String Titulo){
+    public void Registrar_Participante(Participante par){
                 
                 Connection cn=con.conectar();
            
         try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO PARTICIPANTES(NOMBRE_PARTICIPANTE,CI_PARTICIPANTE,"  
                     + "EDAD_PARTICIPANTE,TITULO_PARTICIPANTE) VALUES(?,?,?,?)");
-            pps.setString(1,nombre);
-            pps.setInt(2,CI);
-            pps.setInt(3,Edad);
-            pps.setString(4,Titulo);
+            pps.setString(1,par.getNombParticipante());
+            pps.setString(2,par.getCi());
+            pps.setInt(3,par.getEdadParticipante());
+            pps.setString(4,par.getTitParticipante());
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Participante registrado");
         } catch (SQLException ex) {
@@ -39,15 +41,15 @@ public class Insertores {
         }
     
     }
-    public void Registrar_Congresista(String nombre,Integer CI_Cong,Integer edad_cong,String Titulo){
+    public void Registrar_Congresista(Congresista Cong){
                 Connection cn=con.conectar();
                 try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO CONGRESISTAS (NOMBRE_CONGRESISTA,CI_CONGRESISTA,"  
                     + "EDAD_CONGRESISTA,TITULO_CONGRESISTA) VALUES(?,?,?,?)");
-            pps.setString(1,nombre);
-            pps.setInt(2,CI_Cong);
-            pps.setInt(3,edad_cong);
-            pps.setString(4,Titulo);
+            pps.setString(1,Cong.getNombCongresista());
+            pps.setString(2,Cong.getCiCongresista());
+            pps.setInt(3,Cong.getEdadCongresista());
+            pps.setString(4,Cong.getTitCongresista());
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Congresista registrado");
         } catch (SQLException ex) {
