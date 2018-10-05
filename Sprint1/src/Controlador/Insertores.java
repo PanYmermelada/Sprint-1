@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
 public class Insertores {
     Conexion con = new Conexion();
     Connection cn=con.conectar();
+
+    
+    
     public void Registrar_participante(){
         try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO PARTICIPANTES(NOMBRE_PARTICIPANTE,CI_PARTICIPANTE,"  
