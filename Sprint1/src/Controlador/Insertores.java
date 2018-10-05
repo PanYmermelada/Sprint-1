@@ -5,8 +5,10 @@
  */
 package Controlador;
 
-import Modelo.Congresista;
-import Modelo.Participante;
+
+import Modelo.DCongresistas;
+import Modelo.DCongresos;
+import Modelo.DParticipantes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,17 +25,17 @@ public class Insertores {
     Conexion con = new Conexion();
   
     
-    public void Registrar_Participante(Participante par){
+    public void Registrar_Participante(DParticipantes par){
                 
                 Connection cn=con.conectar();
            
         try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO PARTICIPANTES(NOMBRE_PARTICIPANTE,CI_PARTICIPANTE,"  
                     + "EDAD_PARTICIPANTE,TITULO_PARTICIPANTE) VALUES(?,?,?,?)");
-            pps.setString(1,par.getNombParticipante());
-            pps.setString(2,par.getCi());
-            pps.setInt(3,par.getEdadParticipante());
-            pps.setString(4,par.getTitParticipante());
+            pps.setString(1,par.getNombre_participante());
+            pps.setInt(2,par.getCi_participante());
+            pps.setInt(3,par.getEdad_participante());
+            pps.setString(4,par.getTitulo_participante());
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Participante registrado");
         } catch (SQLException ex) {
@@ -41,32 +43,32 @@ public class Insertores {
         }
     
     }
-    public void Registrar_Congresista(Congresista Cong){
+    public void Registrar_Congresista(DCongresistas Cong){
                 Connection cn=con.conectar();
                 try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO CONGRESISTAS (NOMBRE_CONGRESISTA,CI_CONGRESISTA,"  
                     + "EDAD_CONGRESISTA,TITULO_CONGRESISTA) VALUES(?,?,?,?)");
-            pps.setString(1,Cong.getNombCongresista());
-            pps.setString(2,Cong.getCiCongresista());
-            pps.setInt(3,Cong.getEdadCongresista());
-            pps.setString(4,Cong.getTitCongresista());
+            pps.setString(1,Cong.getNombre_congresista());
+            pps.setInt(2,Cong.getCi_congresista());
+            pps.setInt(3,Cong.getEdad_congresista());
+            pps.setString(4,Cong.getTitulo_congresista());
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Congresista registrado");
         } catch (SQLException ex) {
             Logger.getLogger(Insertores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void Registrar_Congreso(String nom_cong, String Aula,String Fecha,Integer hora,String tema,Float costo){
+    public void Registrar_Congreso(DCongresos Congreso){
         Connection cn=con.conectar();
                 try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO CONGRESOS (NOMBRE_CONGRESO,AULA_CONGRESO,"  
                     + "FECHA_CONGRESO,HORA_INICIO_CONGRESO,TEMA_CONGRESO,COSTO_CONGRESO) VALUES(?,?,?,?,?,?)");
-            pps.setString(1,nom_cong);
-            pps.setString(2,Aula);
-            pps.setString(3,Fecha);
-            pps.setInt(4,hora);
-            pps.setString(4,tema);
-            pps.setFloat(4,costo);
+            pps.setString(1,Congreso.getNombre_congreso());
+            pps.setString(2,Congreso.getAula_congreso());
+            pps.setString(3,Congreso.getFecha_congreso());
+            pps.setString(4,Congreso.getHora_inicio_congreso());
+            pps.setString(4,Congreso.getTema_congreso());
+            pps.setFloat(4,Congreso.getCosto_congreso());
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Congreso registrado");
         } catch (SQLException ex) {
