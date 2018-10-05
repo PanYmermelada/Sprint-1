@@ -11,12 +11,20 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Generar certificado"/>
+                <Property name="text" type="java.lang.String" value="Reportes"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ItemDFac">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Detalle"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItemDFacActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ItemDRec">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de participantes"/>
+                <Property name="text" type="java.lang.String" value="Detalle"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -40,7 +48,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="ItemUsuarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Usuarios"/>
+                <Property name="text" type="java.lang.String" value="Otro"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItemUsuariosActionPerformed"/>
@@ -48,8 +56,24 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ItemInfo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Conferencias"/>
+                <Property name="text" type="java.lang.String" value="Otro"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ItemLineas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Otro"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItemLineasActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ItemProveedores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Otro"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ItemProveedoresActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -132,8 +156,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButton4" max="32767" attributes="0"/>
                       <Component id="btnEditarEliminarParticipante" alignment="0" pref="216" max="32767" attributes="0"/>
-                      <Component id="jButton2" max="32767" attributes="0"/>
-                      <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnDatosConferencista" max="32767" attributes="0"/>
+                      <Component id="btnParticipanteCongreso" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -143,9 +167,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="63" max="-2" attributes="0"/>
+                  <Component id="btnParticipanteCongreso" min="-2" pref="63" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="btnDatosConferencista" min="-2" pref="67" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnEditarEliminarParticipante" min="-2" pref="67" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -201,15 +225,21 @@
             <Property name="text" type="java.lang.String" value="jLabel6"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnParticipanteCongreso">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="PARTICIPANTES Y CONGRESOS"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnParticipanteCongresoActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnDatosConferencista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="text" type="java.lang.String" value="DATOS CONFERENCISTA"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatosConferencistaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEditarEliminarParticipante">
           <Properties>
