@@ -19,12 +19,15 @@ import javax.swing.Timer;
  * @author PC1
  */
 public class MDIPrincipal extends javax.swing.JFrame {
-
+    private Login login=new Login();
     /**
      * Creates new form MDIPrincipal
      */
     public MDIPrincipal() {
         initComponents();
+        //dpnEscritorio.add(login);
+        
+        
         
       
         

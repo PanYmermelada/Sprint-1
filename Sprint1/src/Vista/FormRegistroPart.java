@@ -296,7 +296,7 @@ public class FormRegistroPart extends javax.swing.JInternalFrame {
         
         try {
             //se Realiza la verificacion de si el participante esta ya registrado
-            if(ver.verificarParticipante(dts.getNombre_participante(), conectar)){
+                if(ver.verificarParticipante(dts.getNombre_participante(), conectar)){
                 JOptionPane.showMessageDialog(null, "El Participante ya esta inscrito");
                 
             }else{
