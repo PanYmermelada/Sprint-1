@@ -1,4 +1,4 @@
-package modelo;
+package Controlador;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 public class repeticiones {
