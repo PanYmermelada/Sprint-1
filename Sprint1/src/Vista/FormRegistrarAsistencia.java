@@ -51,9 +51,9 @@ public class FormRegistrarAsistencia extends javax.swing.JInternalFrame {
         btnAsistio = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
+        setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setDesktopIcon(null);
         setMinimumSize(new java.awt.Dimension(95, 34));
         setPreferredSize(new java.awt.Dimension(977, 499));
 
