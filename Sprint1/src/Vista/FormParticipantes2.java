@@ -30,7 +30,7 @@ public class FormParticipantes2 extends javax.swing.JInternalFrame {
         mostrarBuscar("");
         
     }
-     public void mostrarBuscar(String participante){
+    public void mostrarBuscar(String participante){
         DefaultTableModel miModelo;
         LParticipantes fn=new LParticipantes();
         DParticipantes dts=new DParticipantes();
@@ -40,7 +40,7 @@ public class FormParticipantes2 extends javax.swing.JInternalFrame {
         
         
     }
-     public void limpiar(){
+    public void limpiar(){
         txtCi.setText("");
         txtNombre.setText("");
         txtEdad.setText("");
@@ -100,6 +100,12 @@ public class FormParticipantes2 extends javax.swing.JInternalFrame {
         setMaximizable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultas"));
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -293,6 +299,10 @@ public class FormParticipantes2 extends javax.swing.JInternalFrame {
             habilitar(true);
             mostrarBuscar("");
     }//GEN-LAST:event_btnCancelarInscripcionActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
