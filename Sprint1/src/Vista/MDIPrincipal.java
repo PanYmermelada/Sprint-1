@@ -70,7 +70,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         btnParticipanteCongreso = new javax.swing.JButton();
         btnDatosConferencista = new javax.swing.JButton();
         btnEditarEliminarParticipante = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnRegistrarAsistencia = new javax.swing.JButton();
         dpnEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         ItemReportes = new javax.swing.JMenu();
@@ -122,7 +122,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton4");
+        btnRegistrarAsistencia.setText("REGISTRAR ASISTENCIA");
+        btnRegistrarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarAsistenciaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,8 +146,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 216, Short.MAX_VALUE)
+                    .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(btnDatosConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnParticipanteCongreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -157,7 +162,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -306,6 +311,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
         misParticipantes.show();
     }//GEN-LAST:event_btnParticipanteCongresoActionPerformed
 
+    private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
+        FormRegistrarAsistencia misAsistidos = new FormRegistrarAsistencia();
+        dpnEscritorio.add(misAsistidos);
+        misAsistidos.show();
+    }//GEN-LAST:event_btnRegistrarAsistenciaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -354,8 +365,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnDatosConferencista;
     private javax.swing.JButton btnEditarEliminarParticipante;
     private javax.swing.JButton btnParticipanteCongreso;
+    private javax.swing.JButton btnRegistrarAsistencia;
     private javax.swing.JDesktopPane dpnEscritorio;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
