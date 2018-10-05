@@ -67,20 +67,23 @@ public class MDIPrincipal extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         lblHora = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnParticipanteCongreso = new javax.swing.JButton();
+        btnDatosConferencista = new javax.swing.JButton();
         btnEditarEliminarParticipante = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         dpnEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         ItemReportes = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        ItemDFac = new javax.swing.JMenuItem();
         ItemDRec = new javax.swing.JMenuItem();
         menuDB = new javax.swing.JMenu();
         ItemDB = new javax.swing.JMenuItem();
         menuHerramientas = new javax.swing.JMenu();
         ItemUsuarios = new javax.swing.JMenuItem();
         ItemInfo = new javax.swing.JMenuItem();
+        ItemLineas = new javax.swing.JMenuItem();
+        ItemProveedores = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,9 +101,19 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         lblFecha.setText("jLabel6");
 
-        jButton1.setText("jButton1");
+        btnParticipanteCongreso.setText("PARTICIPANTES Y CONGRESOS");
+        btnParticipanteCongreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnParticipanteCongresoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        btnDatosConferencista.setText("DATOS CONFERENCISTA");
+        btnDatosConferencista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatosConferencistaActionPerformed(evt);
+            }
+        });
 
         btnEditarEliminarParticipante.setText("EDITAR/ELIMINAR PARTICIPANTES");
         btnEditarEliminarParticipante.addActionListener(new java.awt.event.ActionListener() {
@@ -130,17 +143,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 216, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDatosConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnParticipanteCongreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnParticipanteCongreso, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDatosConferencista, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnEditarEliminarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -173,10 +186,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         ItemReportes.setText("Consultas");
 
-        jMenuItem1.setText("Generar certificado");
+        jMenuItem1.setText("Reportes");
         ItemReportes.add(jMenuItem1);
 
-        ItemDRec.setText("Lista de participantes");
+        ItemDFac.setText("Detalle");
+        ItemDFac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemDFacActionPerformed(evt);
+            }
+        });
+        ItemReportes.add(ItemDFac);
+
+        ItemDRec.setText("Detalle");
         ItemReportes.add(ItemDRec);
 
         jMenuBar1.add(ItemReportes);
@@ -190,7 +211,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         menuHerramientas.setText("Herramientas");
 
-        ItemUsuarios.setText("Usuarios");
+        ItemUsuarios.setText("Otro");
         ItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ItemUsuariosActionPerformed(evt);
@@ -198,8 +219,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         menuHerramientas.add(ItemUsuarios);
 
-        ItemInfo.setText("Conferencias");
+        ItemInfo.setText("Otro");
         menuHerramientas.add(ItemInfo);
+
+        ItemLineas.setText("Otro");
+        ItemLineas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemLineasActionPerformed(evt);
+            }
+        });
+        menuHerramientas.add(ItemLineas);
+
+        ItemProveedores.setText("Otro");
+        ItemProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemProveedoresActionPerformed(evt);
+            }
+        });
+        menuHerramientas.add(ItemProveedores);
 
         jMenuBar1.add(menuHerramientas);
 
@@ -229,17 +266,45 @@ public class MDIPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ItemDFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemDFacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemDFacActionPerformed
+
     private void ItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemUsuariosActionPerformed
      //  FrmUsuarios misUsuarios = new FrmUsuarios();
       // dpnEscritorio.add(misUsuarios);
       // misUsuarios.show();
     }//GEN-LAST:event_ItemUsuariosActionPerformed
 
+    private void ItemLineasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemLineasActionPerformed
+       // FrmLineas misLineas = new FrmLineas();
+       // dpnEscritorio.add(misLineas);
+       // misLineas.show();
+    }//GEN-LAST:event_ItemLineasActionPerformed
+
+    private void ItemProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemProveedoresActionPerformed
+       // FrmProveedores misProveedores = new FrmProveedores();
+       // dpnEscritorio.add(misProveedores);
+      //  misProveedores.show();
+    }//GEN-LAST:event_ItemProveedoresActionPerformed
+
     private void btnEditarEliminarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEliminarParticipanteActionPerformed
         FormParticipantes misParticipantes=new FormParticipantes();
         dpnEscritorio.add(misParticipantes);
         misParticipantes.show();
     }//GEN-LAST:event_btnEditarEliminarParticipanteActionPerformed
+
+    private void btnDatosConferencistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosConferencistaActionPerformed
+        FormConferencistas misConferencistas=new FormConferencistas();
+        dpnEscritorio.add(misConferencistas);
+        misConferencistas.show();
+    }//GEN-LAST:event_btnDatosConferencistaActionPerformed
+
+    private void btnParticipanteCongresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParticipanteCongresoActionPerformed
+        FormParticipantes2 misParticipantes=new FormParticipantes2();
+        dpnEscritorio.add(misParticipantes);
+        misParticipantes.show();
+    }//GEN-LAST:event_btnParticipanteCongresoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,14 +344,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ItemDB;
+    private javax.swing.JMenuItem ItemDFac;
     private javax.swing.JMenuItem ItemDRec;
     private javax.swing.JMenuItem ItemInfo;
+    private javax.swing.JMenuItem ItemLineas;
+    private javax.swing.JMenuItem ItemProveedores;
     private javax.swing.JMenu ItemReportes;
     private javax.swing.JMenuItem ItemUsuarios;
+    private javax.swing.JButton btnDatosConferencista;
     private javax.swing.JButton btnEditarEliminarParticipante;
+    private javax.swing.JButton btnParticipanteCongreso;
     private javax.swing.JDesktopPane dpnEscritorio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,22 +5,24 @@
  */
 package Controlador;
 
+import Modelo.DCongresos;
 import Modelo.DParticipantes;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author PC1
  */
-public class LParticipantes {
-      Conexion cc=new Conexion();
+public class LCongresos {
+     Conexion cc=new Conexion();
       Connection cn=cc.conectar();
     
     //metodo para poder buscar y mostrar usuarios
-    public DefaultTableModel mostrarParticipantes(DParticipantes misParticipantes){
+    public DefaultTableModel mostrarCongresos(DCongresos misCongresos){
         DefaultTableModel miModelo = null;
         //Lo haremos con procedimientos almacenados
         try{
@@ -28,7 +30,7 @@ public class LParticipantes {
             String dts[]=new String[4];
             miModelo=new DefaultTableModel(null,titulos);
             CallableStatement cst = cn.prepareCall("{ call sp_mostrarbuscar_participantes(?)}");
-            cst.setString(1,misParticipantes.getNombre_participante());
+            cst.setString(1,misCongresos.getNombre_congreso());
             ResultSet rs = cst.executeQuery();
             while(rs.next()){
                 dts[0]=rs.getString("ci_participante");
@@ -41,33 +43,30 @@ public class LParticipantes {
         }catch(Exception ex){
             
         }
-        return miModelo;
-        
+        return miModelo;   
     }
-    public DefaultTableModel mostrarParticipanteCongreso(DParticipantes misParticipantes){
-        DefaultTableModel miModelo = null;
-        //Lo haremos con procedimientos almacenados
+    public String[] devuelveCongreso(DCongresos miCongreso) {
+        String resultado[]=new String[8];
         try{
-            String titulos[]={"CI","Nombre","Edad","Titulo","Congreso","Id Congreso"};
-            String dts[]=new String[6];
-            miModelo=new DefaultTableModel(null,titulos);
-            CallableStatement cst = cn.prepareCall("{ call sp_mostrarbuscar_participantescongreso(?)}");
-            cst.setString(1,misParticipantes.getNombre_participante());
-            ResultSet rs = cst.executeQuery();
-            while(rs.next()){
-                dts[0]=rs.getString("participantes.ci_participante");
-                dts[1]=rs.getString("participantes.nombre_participante");
-                dts[2]=rs.getString("participantes.edad_participante");
-                dts[3]=rs.getString("participantes.titulo_participante");
-                dts[4]=rs.getString("congresos.nombre_congreso");
-                dts[5]=rs.getString("congresos.id_congreso");
-                miModelo.addRow(dts);
-            }
+        CallableStatement cst=cn.prepareCall("{ call sp_devolver_congreso(?)}");
+        cst.setString(1,miCongreso.getNombre_congreso());
+        ResultSet rs=cst.executeQuery();
+        while(rs.next()){
+            resultado[0]=rs.getString("id_congreso");
+            resultado[1]=rs.getString("ci_congresista");
+            resultado[2]=rs.getString("nombre_congreso");
+            resultado[3]=rs.getString("aula_congreso");
+            resultado[4]=rs.getString("fecha_congreso");
+            resultado[5]=rs.getString("hora_inicio_congreso");
+            resultado[6]=rs.getString("tema_congreso");
+            resultado[7]=rs.getString("costo_congreso");
+            
+        }
         }catch(Exception ex){
             
         }
-        return miModelo;
         
+        return resultado;
     }
     /*public String insertarUsuarios(DUsuarios misUsuarios){
         String msg = null;
@@ -118,9 +117,4 @@ public class LParticipantes {
         }
         return msg;  
     } 
-     
-     
-     
-     
-     
 }

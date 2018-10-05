@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.DCongresistas;
 import Modelo.DParticipantes;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -15,26 +16,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC1
  */
-public class LParticipantes {
-      Conexion cc=new Conexion();
+public class LCongresistas {
+    Conexion cc=new Conexion();
       Connection cn=cc.conectar();
     
     //metodo para poder buscar y mostrar usuarios
-    public DefaultTableModel mostrarParticipantes(DParticipantes misParticipantes){
+    public DefaultTableModel mostrarCongresistas(DCongresistas misCongresistas){
         DefaultTableModel miModelo = null;
         //Lo haremos con procedimientos almacenados
         try{
-            String titulos[]={"CI","Nombre","Edad","Titulo"};
-            String dts[]=new String[4];
+            String titulos[]={"CI","Nombre","Edad","Titulo","Congreso"};
+            String dts[]=new String[5];
             miModelo=new DefaultTableModel(null,titulos);
-            CallableStatement cst = cn.prepareCall("{ call sp_mostrarbuscar_participantes(?)}");
-            cst.setString(1,misParticipantes.getNombre_participante());
+            CallableStatement cst = cn.prepareCall("{ call sp_mostrarbuscar_congresistas(?)}");
+            cst.setString(1,misCongresistas.getNombre_congresista());
             ResultSet rs = cst.executeQuery();
             while(rs.next()){
-                dts[0]=rs.getString("ci_participante");
-                dts[1]=rs.getString("nombre_participante");
-                dts[2]=rs.getString("edad_participante");
-                dts[3]=rs.getString("titulo_participante");
+                dts[0]=rs.getString("congresistas.ci_congresista");
+                dts[1]=rs.getString("congresistas.nombre_congresista");
+                dts[2]=rs.getString("congresistas.edad_congresista");
+                dts[3]=rs.getString("congresistas.titulo_congresista");
+                dts[4]=rs.getString("congresos.nombre_congreso");
                 
                 miModelo.addRow(dts);
             }
@@ -44,31 +46,7 @@ public class LParticipantes {
         return miModelo;
         
     }
-    public DefaultTableModel mostrarParticipanteCongreso(DParticipantes misParticipantes){
-        DefaultTableModel miModelo = null;
-        //Lo haremos con procedimientos almacenados
-        try{
-            String titulos[]={"CI","Nombre","Edad","Titulo","Congreso","Id Congreso"};
-            String dts[]=new String[6];
-            miModelo=new DefaultTableModel(null,titulos);
-            CallableStatement cst = cn.prepareCall("{ call sp_mostrarbuscar_participantescongreso(?)}");
-            cst.setString(1,misParticipantes.getNombre_participante());
-            ResultSet rs = cst.executeQuery();
-            while(rs.next()){
-                dts[0]=rs.getString("participantes.ci_participante");
-                dts[1]=rs.getString("participantes.nombre_participante");
-                dts[2]=rs.getString("participantes.edad_participante");
-                dts[3]=rs.getString("participantes.titulo_participante");
-                dts[4]=rs.getString("congresos.nombre_congreso");
-                dts[5]=rs.getString("congresos.id_congreso");
-                miModelo.addRow(dts);
-            }
-        }catch(Exception ex){
-            
-        }
-        return miModelo;
-        
-    }
+    
     /*public String insertarUsuarios(DUsuarios misUsuarios){
         String msg = null;
         try {
@@ -118,9 +96,5 @@ public class LParticipantes {
         }
         return msg;  
     } 
-     
-     
-     
-     
      
 }

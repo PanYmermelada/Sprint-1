@@ -96,7 +96,21 @@ public class LParticipa {
         }
         return msg;  
     } 
-     
+      public String eliminarParticipacion2(DParticipa misParticipaciones){
+        String msg = null;
+        try {
+            CallableStatement cst = cn.prepareCall("{ call sp_eliminar_participacion2(?,?) }");
+            cst.setInt(1,misParticipaciones.getCi_participante());
+            cst.setString(2,misParticipaciones.getId_congreso());
+            cst.executeUpdate();
+            msg = "si";
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            msg = "no";
+        }
+        return msg;  
+    } 
      
      
      

@@ -32,7 +32,7 @@ public class FormParticipantes extends javax.swing.JInternalFrame {
         LParticipantes fn=new LParticipantes();
         DParticipantes dts=new DParticipantes();
         dts.setNombre_participante(usuario);
-        miModelo=fn.mostrarUsuarios(dts);
+        miModelo=fn.mostrarParticipantes(dts);
         tblParticipantes.setModel(miModelo);
         
         

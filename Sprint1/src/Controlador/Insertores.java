@@ -21,7 +21,7 @@ public class Insertores {
     Connection cn=con.conectar();
 
     
-    
+  /*  
     public void Registrar_participante(){
         try {
             PreparedStatement pps = cn.prepareStatement("INSERT INTO PARTICIPANTES(NOMBRE_PARTICIPANTE,CI_PARTICIPANTE,"  
@@ -36,5 +36,5 @@ public class Insertores {
             Logger.getLogger(Insertores.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-    }
+    }*/
 }
