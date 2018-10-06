@@ -18,7 +18,7 @@ public class Verificador{
             JOptionPane.showMessageDialog(null, "Ya se tiene registrada la Conferencia: "+buscar+"'");
                 //return true;
         }else{
-            JOptionPane.showMessageDialog(null, "no existe esa conferencia en la DB");
+            //JOptionPane.showMessageDialog(null, "no existe esa conferencia en la DB");
                     //return false;
         }   
     }
@@ -30,19 +30,31 @@ public class Verificador{
             JOptionPane.showMessageDialog(null, "Ya se tiene registrado a: '"+buscar+"'");
                 return true;
         }else{
-            JOptionPane.showMessageDialog(null, "no existe: '"+buscar+"' en la DB");
+            //JOptionPane.showMessageDialog(null, "no existe: '"+buscar+"' en la DB");
                 return false;
         }
     }
     
-    public boolean verificarParticipante(String buscar, Conexion conex) throws SQLException{
+    public boolean verificarParticipante(int buscar, Conexion conex) throws SQLException{
         Statement stm=conex.conectar().createStatement();
-        ResultSet rs=stm.executeQuery("SELECT * FROM `participantes` WHERE NOMBRE_PARTICIPANTE='"+buscar+"'");
+        ResultSet rs=stm.executeQuery("SELECT * FROM `participantes` WHERE CI_PARTICIPANTE='"+buscar+"'");
+        if(rs.last()){
+            JOptionPane.showMessageDialog(null, "Ya se tiene registrado a este Participante");
+                return true;
+        }else{
+           //JOptionPane.showMessageDialog(null, "no existe: '"+buscar+"' en la DB");
+                return false;
+        }
+    }
+    
+    public boolean verificarUsuario(int buscar, Conexion conex) throws SQLException{
+        Statement stm=conex.conectar().createStatement();
+        ResultSet rs=stm.executeQuery("SELECT * FROM `usuarios` WHERE NOMBRE_USUARIO='"+buscar+"'");
         if(rs.last()){
             JOptionPane.showMessageDialog(null, "Ya se tiene registrado a: '"+buscar+"'");
                 return true;
         }else{
-            JOptionPane.showMessageDialog(null, "no existe: '"+buscar+"' en la DB");
+            //JOptionPane.showMessageDialog(null, "no existe: '"+buscar+"' en la DB");
                 return false;
         }
     }
