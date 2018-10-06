@@ -1,12 +1,11 @@
 package Vista;
-import Controlador.imagen;
-import Controlador.repeticiones;
+
+import modelo.repeticiones;
 
 public class MDI_Principal extends javax.swing.JFrame {
     repeticiones repet;
     private static FormRegistroPart FormularioParticipante = new FormRegistroPart();
-    private static registroCogresista FormularioCongresista = new registroCogresista();
-    private static registroCongreso FormularioCongreso = new registroCongreso();
+   
 
     public MDI_Principal() {
         initComponents();
@@ -213,7 +212,9 @@ public class MDI_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInscribirParticipanteActionPerformed
 
     private void btnRegistrarCongresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCongresoActionPerformed
-        // TODO add your handling code here:
+        RegistrarUsuario regusu=new RegistrarUsuario();
+        contenedorDeVentanas.add(regusu);
+        regusu.show();
     }//GEN-LAST:event_btnRegistrarCongresoActionPerformed
 
     /**
