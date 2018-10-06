@@ -1,4 +1,4 @@
-package modelo;
+package Controlador;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -12,7 +12,7 @@ public class imagen implements Border{
   public BufferedImage back;    
   public imagen(){
         try{
-        URL imagePath = new URL(getClass().getResource("../imagenes/SIS21.jpg").toString());
+        URL imagePath = new URL(getClass().getResource("../Modelo/imcongreso.jpg").toString());
         back =ImageIO.read(imagePath);
         } catch (IOException ex){
         }

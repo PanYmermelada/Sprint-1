@@ -8,10 +8,10 @@ public class Participante {
     private String ci;
     private String idCongreso;
     private String nombParticipante;
-    private int edadParticipante;
+    private String  edadParticipante;
     private String titParticipante;
 
-    public Participante(String ci, String idCongreso, String nombParticipante, int edadParticipante, String titParticipante) {
+    public Participante(String ci, String idCongreso, String nombParticipante, String edadParticipante, String titParticipante) {
         this.ci = ci;
         this.idCongreso = idCongreso;
         this.nombParticipante = nombParticipante;
@@ -43,11 +43,11 @@ public class Participante {
         this.nombParticipante = nombParticipante;
     }
 
-    public int getEdadParticipante() {
+    public String getEdadParticipante() {
         return edadParticipante;
     }
 
-    public void setEdadParticipante(int edadParticipante) {
+    public void setEdadParticipante(String edadParticipante) {
         this.edadParticipante = edadParticipante;
     }
 
