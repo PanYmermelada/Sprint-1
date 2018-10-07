@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Piter Molina Chacón (pjmolina2012@gmail.com)
@@ -16,6 +18,7 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
      */
     public RegistrarUsuario() {
         initComponents();
+        this.setTitle("REGISTRO USUARIO");
         textNombreU.setText("");
         textContrasenia1.setText("");
         textContrasenia2.setText("");
@@ -37,8 +40,8 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         textNombreU = new javax.swing.JTextField();
         textContrasenia1 = new javax.swing.JPasswordField();
         textContrasenia2 = new javax.swing.JPasswordField();
@@ -58,12 +61,17 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Organizador");
 
-        jButton1.setText("REGISTRAR");
-
-        jButton2.setText("SALIR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -79,9 +87,9 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addComponent(jButton1)
+                .addComponent(btnRegistrar)
                 .addGap(42, 42, 42)
-                .addComponent(jButton2)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
@@ -128,23 +136,48 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jRadioButton2))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnSalir))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        if(textNombreU.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane,"Campo nombre obligatorio","Validación",JOptionPane.WARNING_MESSAGE);
+            textNombreU.requestFocusInWindow();
+            return;
+
+        }
+        if(textContrasenia1.getPassword().equals("")){
+            JOptionPane.showMessageDialog(rootPane,"Campo nombre obligatorio","Contrasenia",JOptionPane.WARNING_MESSAGE);
+            textContrasenia1.setText("");
+            textContrasenia2.setText("");
+            textContrasenia1.requestFocusInWindow();
+            return;
+        }
+        
+        if(textContrasenia2.getPassword().equals("")){
+            JOptionPane.showMessageDialog(rootPane,"Campo nombre obligatorio","Contrasenia",JOptionPane.WARNING_MESSAGE);
+            textContrasenia1.setText("");
+            textContrasenia2.setText("");
+            textContrasenia1.requestFocusInWindow();
+            return;
+        }
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
