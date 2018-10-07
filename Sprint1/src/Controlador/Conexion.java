@@ -6,7 +6,7 @@ public class Conexion {
     Connection conectar = null;
     public Connection conectar(){
         try{
-            conectar=DriverManager.getConnection("jdbc:mysql://localhost:3306/softconferencias","root","");
+            conectar=DriverManager.getConnection("jdbc:mysql://localhost:3307/softcongresos","root","");
             System.out.println("Conectado...");
             
         }catch(SQLException ex){

@@ -9,6 +9,7 @@ package Controlador;
 import Modelo.DCongresistas;
 import Modelo.DCongresos;
 import Modelo.DParticipantes;
+import Modelo.Usuarios;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class Insertores {
     Conexion con = new Conexion();
   
     
-    public void Registrar_Participante(DParticipantes par){
+    public void Registrar_Participante(DParticipantes par , DCongresos Congre){
                 
                 Connection cn=con.conectar();
            
@@ -37,6 +38,10 @@ public class Insertores {
             pps.setInt(3,par.getEdad_participante());
             pps.setString(4,par.getTitulo_participante());
             pps.executeUpdate();
+            // para registrar en tabla participa 
+           PreparedStatement ppsp = cn.prepareStatement("INSERT INTO PARTICIPA(CI_PARTICIPANTE,ID_CONGRESO) VALUES(?,?)");
+           ppsp.setInt(1,par.getCi_participante());
+            ppsp.setString(2,Congre.getId_congreso());
             JOptionPane.showMessageDialog(null,"Participante registrado");
         } catch (SQLException ex) {
             Logger.getLogger(Insertores.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,6 +76,21 @@ public class Insertores {
             pps.setFloat(4,Congreso.getCosto_congreso());
             pps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Congreso registrado");
+        } catch (SQLException ex) {
+            Logger.getLogger(Insertores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void Registrar_Usuario(Usuarios usua){
+         Connection cn=con.conectar();
+          try {
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO USUARIOS (NOMBRE_USUARIO,CONTRASEÑA,"
+                    + "TIPO_USUARIO) VALUES(?,?)");
+            pps.setString(1,usua.getNombre_usuario());
+            pps.setString(2,usua.getContraseña());
+            pps.setString(2,usua.getTipo_usuario());
+            
+            pps.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Usuario registrado");
         } catch (SQLException ex) {
             Logger.getLogger(Insertores.class.getName()).log(Level.SEVERE, null, ex);
         }

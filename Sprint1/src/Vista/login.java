@@ -25,7 +25,7 @@ public class login extends javax.swing.JFrame {
         String cap=""; 
         String nom="";
         boolean bandera=false;
-        String sql="SELECT * FROM usuarios WHERE nombre_usuario='"+usuario+"' && contraseña='"+contra+"'";
+        String sql="SELECT * FROM usuarios WHERE nombre_usuario='"+usuario+"' && CONTRASEÐA='"+contra+"'";
         try {
             Statement st=cn.createStatement();
             ResultSet rs=st.executeQuery(sql);
