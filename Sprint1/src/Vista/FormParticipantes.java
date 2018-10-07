@@ -18,7 +18,8 @@ import Controlador.LParticipantes;
  */
 public class FormParticipantes extends javax.swing.JInternalFrame {
 
-    /**
+        FormParticipantes form = new FormParticipantes();
+    /**for
      * Creates new form FrmCongresos
      */
     public FormParticipantes() {

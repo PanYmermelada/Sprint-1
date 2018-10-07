@@ -5,19 +5,61 @@
  */
 package Vista;
 
+import Controlador.Conexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Diego
  */
 public class FormCongreso extends javax.swing.JInternalFrame {
-
+    //para realizar la coneccion a la base de datos   
+    Conexion con = new Conexion();
+    Connection cn=con.conectar();
     /**
      * Creates new form FormCongreso
      */
     public FormCongreso() {
         initComponents();
+        mostrarDatos();
+       
     }
-
+    // para mostrar los datos de la BD en la tabla
+    void mostrarDatos(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID_Cong");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Aula");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("hora");
+        modelo.addColumn("tema");
+        modelo.addColumn("costo");
+        tbl_congresos.setModel(modelo);
+        String[] Datos = new String[7];
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM congresos");
+            while(rs.next()){
+                Datos[0]= rs.getString(1);
+                Datos[1]= rs.getString(3);
+                Datos[2]= rs.getString(4);
+                Datos[3]= rs.getString(5);
+                Datos[4]= rs.getString(6);
+                Datos[5]= rs.getString(7);
+                Datos[6]= rs.getString(8);
+                modelo.addRow(Datos);
+            }
+            tbl_congresos.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormCongreso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,17 +96,22 @@ public class FormCongreso extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultas"));
 
-        btn_buscar.setText("jButton1");
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         tbl_congresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tbl_congresos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,9 +131,9 @@ public class FormCongreso extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_buscar)
                 .addGap(85, 85, 85))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -265,6 +312,11 @@ public class FormCongreso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbl_congresosMouseClicked
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
@@ -293,3 +345,4 @@ public class FormCongreso extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
+
